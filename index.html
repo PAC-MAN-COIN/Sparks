@@ -249,10 +249,14 @@
         });
 
         // Parallax effect for hero background (disabled on mobile for performance)
-        if (window.innerWidth > 768) {
+        const heroImage = document.querySelector('.hero-image');
+        const heroBackground = document.querySelector('.hero-background');
+        
+        // Ensure the hero image is loaded before applying parallax
+        if (heroImage && window.innerWidth > 768) {
             window.addEventListener('scroll', function() {
-                const heroImage = document.querySelector('.hero-image');
                 const scrollPosition = window.pageYOffset;
+                // Apply parallax effect by translating the hero image
                 heroImage.style.transform = `translateY(${scrollPosition * 0.5}px)`;
             });
         }
@@ -365,7 +369,7 @@
 
         // Data for Episodes (including placeholders)
         const episodesData = [
-			{ image: "Episode1.png", title: "Episode 1", description: "The adventure begins!", url: "episode1.html", isPlaceholder: false },
+            { image: "Episode1.png", title: "Episode 1", description: "The adventure begins!", url: "episode1.html", isPlaceholder: false },
             { image: "Logo.jpg", title: "Episode 2", description: "A new threat emerges.", url: "episode1.html", isPlaceholder: false },
             { image: "placeholder_episode.jpg", title: "Episode 3", description: "Coming Soon<br>Stay tuned!", isPlaceholder: true },
             { image: "Teaser4.jpg", title: "Episode 4", description: "Coming Soon<br>Stay tuned!", isPlaceholder: true },
@@ -379,7 +383,6 @@
         const episodeLeftArrow = document.querySelector('.episode-left-arrow');
         const episodeRightArrow = document.querySelector('.episode-right-arrow');
         let episodeIndex = 0; // Start at the first real episode (Episode 1)
-
 
         function updateEpisodeCarousel() {
             // Ensure DOM elements are updated correctly
