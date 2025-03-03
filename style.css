@@ -184,7 +184,7 @@ h1, h2, h3, .contract-address {
     height: 100%;
     background: url('Banner3.png') no-repeat center center fixed; /* Use background image for parallax */
     background-size: cover;
-    opacity: 0.7; /* Match the opacity previously applied to .hero-image */
+    opacity: 0.8; /* Match the opacity previously applied to .hero-image */
 }
 
 /* Remove the hero-image since we're using background image for parallax */
