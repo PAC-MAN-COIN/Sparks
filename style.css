@@ -158,8 +158,19 @@ h1, h2, h3, .contract-address {
 }
 
 .hero-title {
-    font-size: 6rem;
+    font-size: 8rem;
     animation: popIn 1s ease-out;
+    position: relative;
+    /* Background is dark purple */
+    color: #800080; /* Dark purple background */
+    /* Apply halftone dots as the text fill */
+    background: radial-gradient(circle, #ff69b4 2px, #800080 2px); /* Bright pink dots, dark purple background */
+    background-size: 12px 12px;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    /* White glow effect */
+    text-shadow: 4px 4px 1px #ff69b4, 6px 6px 0px #800080, 6px 6px 0px #800080;
 }
 
 /* Speech Bubbles */
@@ -206,29 +217,21 @@ h1, h2, h3, .contract-address {
     border-radius: 5px;
     border: 3px solid #800080;
     box-shadow: 3px 3px #800080, 0 0 10px #ff69b4;
-    transition: transform 0.2s, box-shadow 0.3s;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .cta-button:hover {
     transform: scale(1.1);
     box-shadow: 3px 3px #ff69b4, 0 0 15px #ff69b4;
-    animation: glowPulse 1s infinite;
 }
 
-/* Glow Pulse Animation for Hover */
-@keyframes glowPulse {
-    0% { box-shadow: 3px 3px #ff69b4, 0 0 15px #ff69b4; }
-    50% { box-shadow: 3px 3px #ff69b4, 0 0 25px #ff69b4; }
-    100% { box-shadow: 3px 3px #ff69b4, 0 0 15px #ff69b4; }
-}
-
+/* Hero Background */
 .hero-background {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    /* Add semi-transparent black overlay and gradient */
     background: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 1)), /* Black overlay */
                 linear-gradient(to bottom, rgba(26, 26, 61, 0.7), rgba(26, 26, 61, 0.7)); /* Original gradient */
     background-attachment: fixed;
@@ -252,7 +255,6 @@ h1, h2, h3, .contract-address {
     z-index: 10;
     width: 100%;
     overflow-x: hidden;
-    /* Speech bubble background */
     background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="60" viewBox="0 0 600 60"><path d="M0,0 H600 V40 Q580,50 560,40 T520,40 T480,40 T440,40 T400,40 T360,40 T320,40 T280,40 T240,40 T200,40 T160,40 T120,40 T80,40 T40,40 Q20,50 0,40 V0 Z" fill="rgba(26, 26, 61, 0.9)" stroke="#ff69b4" stroke-width="4"/></svg>') repeat-x;
     background-size: 600px 60px;
     height: 60px;
@@ -304,7 +306,6 @@ h1, h2, h3, .contract-address {
 .navbar ul li a:hover {
     color: #fff;
     text-shadow: 2px 2px #ff69b4, 0 0 10px #ff69b4;
-    /* Removed jitter effect */
 }
 
 /* Animate the star pattern */
@@ -356,19 +357,21 @@ h1, h2, h3, .contract-address {
     opacity: 0;
     display: none;
     width: 100%;
-    transition: transform 0.5s ease, box-shadow 0.3s ease;
+    will-change: transform; /* Optimize for transform animations */
+    transform: scale(1); /* Ensure initial scale is 1 */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transition for hover */
 }
 
 .teaser-card.active {
     display: block;
     opacity: 1;
     animation: comicPopIn 0.5s forwards;
+    animation-iteration-count: 1; /* Ensure it only plays once */
 }
 
 .teaser-card:hover {
     transform: scale(1.05);
     box-shadow: 8px 8px #800080, 0 0 15px #ff69b4;
-    animation: glowPulse 1s infinite;
 }
 
 /* Comic Pop-In Animation for Cards */
@@ -543,7 +546,6 @@ h1, h2, h3, .contract-address {
     transform: scale(1.1);
     box-shadow: 8px 8px #ff69b4, 0 0 15px #ff69b4;
     background-color: #ff69b4;
-    animation: glowPulse 1s infinite;
 }
 
 .tokenomics-box.visible {
@@ -604,7 +606,7 @@ h1, h2, h3, .contract-address {
 }
 
 .roadmap-item {
-    position: relative;
+    position: سیاهrelative;
     width: 100%;
     max-width: 350px;
     margin-bottom: 1rem;
@@ -648,7 +650,6 @@ h1, h2, h3, .contract-address {
 
 .roadmap-item:hover .roadmap-content {
     background-color: #ff69b4;
-    animation: glowPulse 1s infinite;
 }
 
 /* Episodes Section */
@@ -701,12 +702,15 @@ h1, h2, h3, .contract-address {
     z-index: 1;
     cursor: pointer;
     display: none;
+    transform: scale(1); /* Ensure initial scale is 1 */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transition for hover */
 }
 
 .episode-panel.active {
     display: block;
     opacity: 1;
     animation: comicPopIn 0.5s forwards;
+    animation-iteration-count: 1; /* Ensure it only plays once */
 }
 
 .episode-panel.active:nth-child(1) {
@@ -722,7 +726,6 @@ h1, h2, h3, .contract-address {
 .episode-panel:hover {
     transform: translateY(0) scale(1.2);
     box-shadow: 12px 12px #ff69b4, 0 0 15px #ff69b4;
-    animation: glowPulse 1s infinite;
 }
 
 .episode-panel.visible {
@@ -771,7 +774,7 @@ h1, h2, h3, .contract-address {
 }
 
 .carousel-arrow:hover {
-    animation: glowPulse 1s infinite;
+    transform: scale(1.1);
 }
 
 /* Community Section */
@@ -810,7 +813,6 @@ h1, h2, h3, .contract-address {
 .social-icon:hover {
     transform: scale(1.1);
     box-shadow: 3px 3px #ff69b4, 0 0 15px #ff69b4;
-    animation: glowPulse 1s infinite;
 }
 
 /* Footer */
@@ -886,7 +888,8 @@ section.visible {
     }
 
     .hero-title {
-        font-size: 3.5rem;
+        font-size: 5rem;
+        background-size: 10px 10px;
     }
 
     .speech-bubble p {
@@ -1028,7 +1031,8 @@ section.visible {
 
 @media (max-width: 480px) {
     .hero-title {
-        font-size: 2.5rem;
+        font-size: 3.5rem;
+        background-size: 8px 8px;
     }
 
     .speech-bubble p {
