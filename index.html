@@ -6,9 +6,15 @@
     <title>Sparks - The Ultimate Comic & Memecoin Experience</title>
     <link rel="stylesheet" href="style.css">
     <!-- Adding comic-style fonts from Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Poppins:wght@400;700&family=Bubblegum+Sans&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Chewy&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- Cursor Glow Overlay -->
+    <div class="cursor-glow"></div>
+
+    <!-- Comic Effect Container (for POW!, BAM! effects) -->
+    <div class="comic-effect"></div>
+
     <!-- Full-Screen Overlay for Radial Wipe Effect -->
     <div class="radial-wipe-overlay"></div>
 
@@ -211,8 +217,41 @@
         <p>© 2025 Sparks. All rights reserved.</p>
     </footer>
 
-    <!-- JavaScript for Scroll Animations, Effects, Radial Wipe, and Carousel -->
+    <!-- JavaScript for Scroll Animations, Effects, Radial Wipe, Carousel, Cursor Glow, and Comic Effects -->
     <script>
+        // Cursor Glow Effect
+        const cursorGlow = document.querySelector('.cursor-glow');
+        document.addEventListener('mousemove', (e) => {
+            const x = e.clientX;
+            const y = e.clientY;
+            cursorGlow.style.left = `${x}px`;
+            cursorGlow.style.top = `${y}px`;
+        });
+
+        // Comic Sound Effect on Click
+        const comicEffect = document.querySelector('.comic-effect');
+        function createComicEffect(x, y) {
+            const effect = document.createElement('div');
+            effect.classList.add('comic-sound');
+            effect.style.left = `${x}px`;
+            effect.style.top = `${y}px`;
+            const sounds = ['POW!', 'BAM!', 'ZAP!', 'BOOM!'];
+            effect.textContent = sounds[Math.floor(Math.random() * sounds.length)];
+            comicEffect.appendChild(effect);
+            setTimeout(() => {
+                effect.remove();
+            }, 1000); // Remove after animation
+        }
+
+        // Add comic effect on click for navbar links, teaser cards, and episode panels
+        document.querySelectorAll('.navbar ul li a, .teaser-card, .episode-panel').forEach(element => {
+            element.addEventListener('click', (e) => {
+                const x = e.clientX;
+                const y = e.clientY;
+                createComicEffect(x, y);
+            });
+        });
+
         // Smooth scrolling for navbar links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
@@ -312,15 +351,36 @@
         const teaserLeftArrow = document.querySelector('.teaser-left-arrow');
         const teaserRightArrow = document.querySelector('.teaser-right-arrow');
         let teaserIndex = 0;
+        let isAnimating = false;
 
         function updateTeaserCarousel() {
+            if (isAnimating) return;
+            isAnimating = true;
+
             teaserCardsArray.forEach((card, index) => {
-                card.style.display = index === teaserIndex ? 'block' : 'none';
-                card.classList.toggle('active', index === teaserIndex);
+                if (index === teaserIndex) {
+                    card.style.display = 'block';
+                    card.classList.add('active');
+                    card.classList.remove('hidden');
+                    if (!card.classList.contains('initial-load')) {
+                        card.classList.add('initial-load');
+                        card.style.animation = 'comicPopIn 0.5s forwards';
+                    }
+                } else {
+                    card.classList.add('hidden');
+                    setTimeout(() => {
+                        card.style.display = 'none';
+                        card.classList.remove('active');
+                    }, 500);
+                }
             });
 
             teaserLeftArrow.style.display = teaserIndex === 0 ? 'none' : 'inline-block';
             teaserRightArrow.style.display = teaserIndex === teaserCardsArray.length - 1 ? 'none' : 'inline-block';
+
+            setTimeout(() => {
+                isAnimating = false;
+            }, 500);
         }
 
         teaserLeftArrow.addEventListener('click', () => {
@@ -345,15 +405,36 @@
         const episodeLeftArrow = document.querySelector('.episode-left-arrow');
         const episodeRightArrow = document.querySelector('.episode-right-arrow');
         let episodeIndex = 0;
+        let episodeAnimating = false;
 
         function updateEpisodeCarousel() {
+            if (episodeAnimating) return;
+            episodeAnimating = true;
+
             episodePanelsArray.forEach((panel, index) => {
-                panel.style.display = index === episodeIndex ? 'block' : 'none';
-                panel.classList.toggle('active', index === episodeIndex);
+                if (index === episodeIndex) {
+                    panel.style.display = 'block';
+                    panel.classList.add('active');
+                    panel.classList.remove('hidden');
+                    if (!panel.classList.contains('initial-load')) {
+                        panel.classList.add('initial-load');
+                        panel.style.animation = 'comicPopIn 0.5s forwards';
+                    }
+                } else {
+                    panel.classList.add('hidden');
+                    setTimeout(() => {
+                        panel.style.display = 'none';
+                        panel.classList.remove('active');
+                    }, 500);
+                }
             });
 
             episodeLeftArrow.style.display = episodeIndex === 0 ? 'none' : 'inline-block';
             episodeRightArrow.style.display = episodeIndex === episodePanelsArray.length - 1 ? 'none' : 'inline-block';
+
+            setTimeout(() => {
+                episodeAnimating = false;
+            }, 500);
         }
 
         episodeLeftArrow.addEventListener('click', () => {
