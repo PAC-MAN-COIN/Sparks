@@ -27,8 +27,7 @@
             <img src="Banner3.png" alt="Hero Background" class="hero-image">
         </div>
     </header>
-	
-	
+
     <!-- Episodes Section -->
     <section id="episodes" class="episodes-section">
         <h2 class="section-title">Episodes</h2>
@@ -38,14 +37,24 @@
                 <button class="carousel-arrow episode-right-arrow" aria-label="Next Episode">❯</button>
             </div>
             <div class="episodes-stack">
-                <div class="episode-panel" data-episode-url="episode1.html">
+                <!-- Left Panel (Decorative, Previous Episode or Placeholder) -->
+                <div class="episode-panel episode-left">
+                    <img src="placeholder_episode.jpg" alt="Placeholder Episode" class="episode-image">
+                    <div class="episode-info">
+                        <h3>Placeholder Episode</h3>
+                        <p>Coming Soon<br>Stay tuned!</p>
+                    </div>
+                </div>
+                <!-- Center Panel (Active, Selected Episode) -->
+                <div class="episode-panel episode-center active">
                     <img src="Episode1.png" alt="Episode 1" class="episode-image">
                     <div class="episode-info">
                         <h3>Episode 1</h3>
                         <p>The adventure begins!</p>
                     </div>
                 </div>
-                <div class="episode-panel" data-episode-url="episode1.html">
+                <!-- Right Panel (Decorative, Next Episode or Placeholder) -->
+                <div class="episode-panel episode-right">
                     <img src="Logo.jpg" alt="Episode 2" class="episode-image">
                     <div class="episode-info">
                         <h3>Episode 2</h3>
@@ -55,7 +64,6 @@
             </div>
         </div>
     </section>
-
 
     <!-- Characters Section -->
     <section id="characters" class="characters-section">
@@ -256,11 +264,11 @@
         const contractAddress = document.querySelector('.contract-address');
         const episodePanels = document.querySelectorAll('.episode-panel');
         const teaserCards = document.querySelectorAll('.teaser-card');
-        
+
         const options = {
             threshold: 0.2
         };
-        
+
         const observer = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -303,24 +311,24 @@
             });
         });
 
-		// Redirect to Episode Page
-		const episodePanelsInteractive = document.querySelectorAll('.episode-panel');
-		const radialWipeOverlay = document.querySelector('.radial-wipe-overlay');
+        // Redirect to Episode Page
+        const episodePanelsInteractive = document.querySelectorAll('.episode-panel:not(.placeholder)');
+        const radialWipeOverlay = document.querySelector('.radial-wipe-overlay');
 
-		episodePanelsInteractive.forEach(panel => {
-			panel.addEventListener('click', (e) => {
-				e.preventDefault();
-				const episodeUrl = panel.getAttribute('data-episode-url');
+        episodePanelsInteractive.forEach(panel => {
+            panel.addEventListener('click', (e) => {
+                e.preventDefault();
+                const episodeUrl = panel.getAttribute('data-episode-url');
 
-				radialWipeOverlay.style.display = 'block';
-				radialWipeOverlay.classList.add('wipe');
+                radialWipeOverlay.style.display = 'block';
+                radialWipeOverlay.classList.add('wipe');
 
-				setTimeout(() => {
-					sessionStorage.setItem('transitionOut', 'true'); // Set flag for transition out
-					window.location.href = episodeUrl;
-				}, 1000);
-			});
-		});
+                setTimeout(() => {
+                    sessionStorage.setItem('transitionOut', 'true');
+                    window.location.href = episodeUrl;
+                }, 1000);
+            });
+        });
 
         // Carousel for Teasers
         const teaserStack = document.querySelector('.teaser-stack');
@@ -355,37 +363,98 @@
 
         updateTeaserCarousel();
 
+        // Data for Episodes (including placeholders)
+        const episodesData = [
+			{ image: "Episode1.png", title: "Episode 1", description: "The adventure begins!", url: "episode1.html", isPlaceholder: false },
+            { image: "Logo.jpg", title: "Episode 2", description: "A new threat emerges.", url: "episode1.html", isPlaceholder: false },
+            { image: "placeholder_episode.jpg", title: "Episode 3", description: "Coming Soon<br>Stay tuned!", isPlaceholder: true },
+            { image: "Teaser4.jpg", title: "Episode 4", description: "Coming Soon<br>Stay tuned!", isPlaceholder: true },
+            { image: "Teaser1.jpg", title: "Episode 5", description: "Coming Soon<br>Stay tuned!", isPlaceholder: true }
+        ];
+
         // Carousel for Episodes
-        const episodesStack = document.querySelector('.episodes-stack');
-        const episodePanelsArray = document.querySelectorAll('.episode-panel');
+        const episodeLeftPanel = document.querySelector('.episode-left');
+        const episodeCenterPanel = document.querySelector('.episode-center');
+        const episodeRightPanel = document.querySelector('.episode-right');
         const episodeLeftArrow = document.querySelector('.episode-left-arrow');
         const episodeRightArrow = document.querySelector('.episode-right-arrow');
-        let episodeIndex = 0;
+        let episodeIndex = 0; // Start at the first real episode (Episode 1)
+
 
         function updateEpisodeCarousel() {
-            episodePanelsArray.forEach((panel, index) => {
-                panel.style.display = index === episodeIndex ? 'block' : 'none';
-                panel.classList.toggle('active', index === episodeIndex);
-            });
+            // Ensure DOM elements are updated correctly
+            console.log('Updating carousel, new episodeIndex:', episodeIndex);
 
-            episodeLeftArrow.style.display = episodeIndex === 0 ? 'none' : 'inline-block';
-            episodeRightArrow.style.display = episodeIndex === episodePanelsArray.length - 1 ? 'none' : 'inline-block';
+            // Update Center Panel (Active)
+            const centerImage = episodeCenterPanel.querySelector('.episode-image');
+            const centerTitle = episodeCenterPanel.querySelector('.episode-info h3');
+            const centerDescription = episodeCenterPanel.querySelector('.episode-info p');
+
+            centerImage.src = episodesData[episodeIndex].image;
+            centerTitle.innerHTML = episodesData[episodeIndex].title;
+            centerDescription.innerHTML = episodesData[episodeIndex].description;
+
+            if (episodesData[episodeIndex].isPlaceholder) {
+                episodeCenterPanel.removeAttribute('data-episode-url');
+                episodeCenterPanel.classList.add('placeholder');
+            } else {
+                episodeCenterPanel.setAttribute('data-episode-url', episodesData[episodeIndex].url);
+                episodeCenterPanel.classList.remove('placeholder');
+            }
+
+            // Update Left Panel (Previous)
+            const prevIndex = episodeIndex - 1 >= 0 ? episodeIndex - 1 : 0;
+            const leftImage = episodeLeftPanel.querySelector('.episode-image');
+            const leftTitle = episodeLeftPanel.querySelector('.episode-info h3');
+            const leftDescription = episodeLeftPanel.querySelector('.episode-info p');
+
+            leftImage.src = episodesData[prevIndex].image;
+            leftTitle.innerHTML = episodesData[prevIndex].title;
+            leftDescription.innerHTML = episodesData[prevIndex].description;
+            episodeLeftPanel.classList.add('placeholder'); // Always decorative, non-clickable
+
+            // Update Right Panel (Next)
+            const nextIndex = episodeIndex + 1 < episodesData.length ? episodeIndex + 1 : episodesData.length - 1;
+            const rightImage = episodeRightPanel.querySelector('.episode-image');
+            const rightTitle = episodeRightPanel.querySelector('.episode-info h3');
+            const rightDescription = episodeRightPanel.querySelector('.episode-info p');
+
+            rightImage.src = episodesData[nextIndex].image;
+            rightTitle.innerHTML = episodesData[nextIndex].title;
+            rightDescription.innerHTML = episodesData[nextIndex].description;
+            episodeRightPanel.classList.add('placeholder'); // Always decorative, non-clickable
+
+            // Debug logging for arrow visibility
+            console.log('Left Arrow Display:', episodeIndex > 0 ? 'inline-block' : 'none');
+            console.log('Right Arrow Display:', episodeIndex < episodesData.length - 1 ? 'inline-block' : 'none');
+
+            // Update arrows visibility
+            episodeLeftArrow.style.display = episodeIndex > 0 ? 'inline-block' : 'none'; // Show left arrow if not at the first episode
+            episodeRightArrow.style.display = episodeIndex < episodesData.length - 1 ? 'inline-block' : 'none'; // Show right arrow if not at the last episode
         }
 
-        episodeLeftArrow.addEventListener('click', () => {
-            if (episodeIndex > 0) {
+        // Ensure event listeners are correctly set up
+        episodeLeftArrow.addEventListener('click', (e) => {
+            e.preventDefault();
+            console.log('Left arrow clicked, current index:', episodeIndex);
+            if (episodeIndex > 0) { // Allow navigation to index 1 (first placeholder)
                 episodeIndex--;
+                console.log('New index after left click:', episodeIndex);
                 updateEpisodeCarousel();
             }
         });
 
-        episodeRightArrow.addEventListener('click', () => {
-            if (episodeIndex < episodePanelsArray.length - 1) {
+        episodeRightArrow.addEventListener('click', (e) => {
+            e.preventDefault();
+            console.log('Right arrow clicked, current index:', episodeIndex);
+            if (episodeIndex < episodesData.length - 1) { // Allow navigation to index 3 (Episode 2) and index 4 (last placeholder)
                 episodeIndex++;
+                console.log('New index after right click:', episodeIndex);
                 updateEpisodeCarousel();
             }
         });
 
+        // Initial load
         updateEpisodeCarousel();
     </script>
 </body>
