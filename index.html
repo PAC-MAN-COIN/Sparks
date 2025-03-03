@@ -49,7 +49,7 @@
         </ul>
     </nav>
 
-    <!-- Teasers Section (Updated to Cycle Like Episodes) -->
+    <!-- Teasers Section -->
     <section id="teasers" class="teasers-section">
         <h2 class="section-title">Teasers</h2>
         <div class="teaser-carousel">
@@ -345,42 +345,21 @@
             });
         });
 
-        // Carousel for Teasers
+        // Carousel for Teasers (Original Behavior)
         const teaserStack = document.querySelector('.teaser-stack');
         const teaserCardsArray = document.querySelectorAll('.teaser-card');
         const teaserLeftArrow = document.querySelector('.teaser-left-arrow');
         const teaserRightArrow = document.querySelector('.teaser-right-arrow');
         let teaserIndex = 0;
-        let isAnimating = false;
 
         function updateTeaserCarousel() {
-            if (isAnimating) return;
-            isAnimating = true;
-
             teaserCardsArray.forEach((card, index) => {
-                if (index === teaserIndex) {
-                    card.style.display = 'block';
-                    card.classList.add('active');
-                    card.classList.remove('hidden');
-                    if (!card.classList.contains('initial-load')) {
-                        card.classList.add('initial-load');
-                        card.style.animation = 'comicPopIn 0.5s forwards';
-                    }
-                } else {
-                    card.classList.add('hidden');
-                    setTimeout(() => {
-                        card.style.display = 'none';
-                        card.classList.remove('active');
-                    }, 500);
-                }
+                card.style.display = index === teaserIndex ? 'block' : 'none';
+                card.classList.toggle('active', index === teaserIndex);
             });
 
             teaserLeftArrow.style.display = teaserIndex === 0 ? 'none' : 'inline-block';
             teaserRightArrow.style.display = teaserIndex === teaserCardsArray.length - 1 ? 'none' : 'inline-block';
-
-            setTimeout(() => {
-                isAnimating = false;
-            }, 500);
         }
 
         teaserLeftArrow.addEventListener('click', () => {
@@ -399,42 +378,21 @@
 
         updateTeaserCarousel();
 
-        // Carousel for Episodes (Desktop and Mobile)
+        // Carousel for Episodes (Original Behavior)
         const episodesStack = document.querySelector('.episodes-stack');
         const episodePanelsArray = document.querySelectorAll('.episode-panel');
         const episodeLeftArrow = document.querySelector('.episode-left-arrow');
         const episodeRightArrow = document.querySelector('.episode-right-arrow');
         let episodeIndex = 0;
-        let episodeAnimating = false;
 
         function updateEpisodeCarousel() {
-            if (episodeAnimating) return;
-            episodeAnimating = true;
-
             episodePanelsArray.forEach((panel, index) => {
-                if (index === episodeIndex) {
-                    panel.style.display = 'block';
-                    panel.classList.add('active');
-                    panel.classList.remove('hidden');
-                    if (!panel.classList.contains('initial-load')) {
-                        panel.classList.add('initial-load');
-                        panel.style.animation = 'comicPopIn 0.5s forwards';
-                    }
-                } else {
-                    panel.classList.add('hidden');
-                    setTimeout(() => {
-                        panel.style.display = 'none';
-                        panel.classList.remove('active');
-                    }, 500);
-                }
+                panel.style.display = index === episodeIndex ? 'block' : 'none';
+                panel.classList.toggle('active', index === episodeIndex);
             });
 
             episodeLeftArrow.style.display = episodeIndex === 0 ? 'none' : 'inline-block';
             episodeRightArrow.style.display = episodeIndex === episodePanelsArray.length - 1 ? 'none' : 'inline-block';
-
-            setTimeout(() => {
-                episodeAnimating = false;
-            }, 500);
         }
 
         episodeLeftArrow.addEventListener('click', () => {

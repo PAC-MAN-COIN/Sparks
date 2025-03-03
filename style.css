@@ -25,7 +25,7 @@ body {
     pointer-events: none;
     z-index: 1;
     transform: translate(-50%, -50%);
-    transition: all 0.02s ease; /* Even faster response */
+    transition: all 0.02s ease;
 }
 
 /* Comic Sound Effect */
@@ -109,9 +109,9 @@ h1, h2, h3, .contract-address {
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 100px; /* Reduced size */
+    width: 100px;
     height: 100px;
-    background: radial-gradient(circle, #ff69b4 5%, transparent 60%); /* Softer gradient */
+    background: radial-gradient(circle, #ff69b4 5%, transparent 60%);
     transform: translate(-50%, -50%) rotate(45deg);
     opacity: 0;
     z-index: -1;
@@ -122,7 +122,7 @@ h1, h2, h3, .contract-address {
 /* Starburst animation */
 @keyframes starburst {
     0% { transform: translate(-50%, -50%) rotate(45deg) scale(0); opacity: 0; }
-    50% { transform: translate(-50%, -50%) rotate(45deg) scale(1.2); opacity: 0.3; } /* Reduced opacity */
+    50% { transform: translate(-50%, -50%) rotate(45deg) scale(1.2); opacity: 0.3; }
     100% { transform: translate(-50%, -50%) rotate(45deg) scale(1); opacity: 0.2; }
 }
 
@@ -228,7 +228,9 @@ h1, h2, h3, .contract-address {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to bottom, rgba(26, 26, 61, 0.5), rgba(26, 26, 61, 0.5));
+    /* Add semi-transparent black overlay and gradient */
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 1)), /* Black overlay */
+                linear-gradient(to bottom, rgba(26, 26, 61, 0.7), rgba(26, 26, 61, 0.7)); /* Original gradient */
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
@@ -242,10 +244,10 @@ h1, h2, h3, .contract-address {
     opacity: 0.8;
 }
 
-/* Navigation Bar with Enhanced Comic-Style Design */
+/* Navigation Bar */
 .navbar {
     position: sticky;
-    position: -webkit-sticky; /* For broader compatibility */
+    position: -webkit-sticky;
     top: 0;
     z-index: 10;
     width: 100%;
@@ -254,7 +256,6 @@ h1, h2, h3, .contract-address {
     background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="60" viewBox="0 0 600 60"><path d="M0,0 H600 V40 Q580,50 560,40 T520,40 T480,40 T440,40 T400,40 T360,40 T320,40 T280,40 T240,40 T200,40 T160,40 T120,40 T80,40 T40,40 Q20,50 0,40 V0 Z" fill="rgba(26, 26, 61, 0.9)" stroke="#ff69b4" stroke-width="4"/></svg>') repeat-x;
     background-size: 600px 60px;
     height: 60px;
-    /* Add lightning bolt pattern */
     position: relative;
 }
 
@@ -265,21 +266,9 @@ h1, h2, h3, .contract-address {
     left: 0;
     width: 200%;
     height: 100%;
-    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40"><path d="M10,0 L20,15 L15,15 L25,40 L20,25 L25,25 L10,0 Z" fill="#ff69b4" fill-opacity="0.3"/></svg>') repeat;
-    background-size: 40px 40px;
-    animation: movePattern 15s linear infinite;
-}
-
-/* Add small star icons at the edges */
-.navbar::after {
-    content: '';
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    width: 20px;
-    height: 20px;
-    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><path d="M10,0 L12,8 L20,10 L12,12 L10,20 L8,12 L0,10 L8,8 Z" fill="#ff69b4"/></svg>') no-repeat;
-    background-size: contain;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><path d="M10,0 L12,8 L20,10 L12,12 L10,20 L8,12 L0,10 L8,8 Z" fill="#ff69b4" fill-opacity="0.2"/></svg>') repeat;
+    background-size: 20px 20px;
+    animation: movePattern 10s linear infinite;
 }
 
 .navbar ul {
@@ -292,7 +281,7 @@ h1, h2, h3, .contract-address {
     white-space: nowrap;
     position: relative;
     top: 10px;
-    max-width: 100%; /* Prevent overflow */
+    max-width: 100%;
 }
 
 .navbar ul li {
@@ -309,80 +298,22 @@ h1, h2, h3, .contract-address {
     text-shadow: 2px 2px #800080, 0 0 5px #ff69b4;
     transition: color 0.3s, text-shadow 0.3s;
     position: relative;
-    display: inline-block; /* Prevent layout shift */
+    display: inline-block;
 }
 
 .navbar ul li a:hover {
     color: #fff;
     text-shadow: 2px 2px #ff69b4, 0 0 10px #ff69b4;
-    animation: shake 0.5s infinite;
+    /* Removed jitter effect */
 }
 
-/* Burst Effect on Hover */
-.navbar ul li a:hover::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 40px;
-    height: 40px;
-    background: radial-gradient(circle, #ff69b4 10%, transparent 70%);
-    transform: translate(-50%, -50%) rotate(45deg);
-    opacity: 0;
-    z-index: -1;
-    animation: burst 0.5s forwards;
-}
-
-/* Random "POW!" or "ZAP!" Effect on Hover */
-.navbar ul li a:hover::after {
-    content: '';
-    position: absolute;
-    top: -30px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-family: 'Chewy', cursive;
-    font-size: 1rem;
-    color: #ff69b4;
-    text-shadow: 2px 2px #800080;
-    animation: comicSound 0.8s forwards;
-}
-
-.navbar ul li:nth-child(1) a:hover::after { content: 'POW!'; }
-.navbar ul li:nth-child(2) a:hover::after { content: 'ZAP!'; }
-.navbar ul li:nth-child(3) a:hover::after { content: 'BAM!'; }
-.navbar ul li:nth-child(4) a:hover::after { content: 'BOOM!'; }
-.navbar ul li:nth-child(5) a:hover::after { content: 'CRASH!'; }
-.navbar ul li:nth-child(6) a:hover::after { content: 'WHAM!'; }
-
-/* Burst Animation */
-@keyframes burst {
-    0% { transform: translate(-50%, -50%) rotate(45deg) scale(0); opacity: 0; }
-    50% { transform: translate(-50%, -50%) rotate(45deg) scale(1.2); opacity: 0.8; }
-    100% { transform: translate(-50%, -50%) rotate(45deg) scale(1); opacity: 0; }
-}
-
-/* Shake Animation for Navbar Links */
-@keyframes shake {
-    0% { transform: translateX(0); }
-    10% { transform: translateX(-2px); }
-    20% { transform: translateX(2px); }
-    30% { transform: translateX(-2px); }
-    40% { transform: translateX(2px); }
-    50% { transform: translateX(-1px); }
-    60% { transform: translateX(1px); }
-    70% { transform: translateX(-1px); }
-    80% { transform: translateX(1px); }
-    90% { transform: translateX(-0.5px); }
-    100% { transform: translateX(0); }
-}
-
-/* Animate the lightning pattern */
+/* Animate the star pattern */
 @keyframes movePattern {
     0% { transform: translateX(0); }
     100% { transform: translateX(-50%); }
 }
 
-/* Teasers Section (Cycling Layout) */
+/* Teasers Section */
 .teasers-section {
     padding: 1rem;
     background: transparent;
@@ -391,7 +322,6 @@ h1, h2, h3, .contract-address {
     background-image: radial-gradient(circle, #800080 1px, transparent 1px);
     background-size: 10px 10px;
     position: relative;
-    /* Animated lightning border */
     border-bottom: 8px solid #ff69b4;
     border-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40"><path d="M10,0 L20,15 L15,15 L25,40 L20,25 L25,25 L10,0 Z" fill="none" stroke="#ff69b4" stroke-width="4"/></svg>') 40 stretch;
     border-image-width: 8px;
@@ -423,19 +353,15 @@ h1, h2, h3, .contract-address {
     padding: 0.5rem;
     text-align: center;
     box-shadow: 5px 5px #800080, 0 0 10px #ff69b4;
-    transition: transform 0.5s ease, box-shadow 0.3s ease, opacity 0.5s ease;
     opacity: 0;
     display: none;
     width: 100%;
-    transform: scale(1);
+    transition: transform 0.5s ease, box-shadow 0.3s ease;
 }
 
 .teaser-card.active {
     display: block;
     opacity: 1;
-}
-
-.teaser-card.initial-load {
     animation: comicPopIn 0.5s forwards;
 }
 
@@ -445,18 +371,12 @@ h1, h2, h3, .contract-address {
     animation: glowPulse 1s infinite;
 }
 
-.teaser-card.hidden {
-    opacity: 0;
-    transform: scale(1);
-}
-
-/* Comic Pop-In Animation for Cards (only on initial load) */
+/* Comic Pop-In Animation for Cards */
 @keyframes comicPopIn {
     0% { transform: scale(0); opacity: 0; }
     80% { transform: scale(1.1); opacity: 1; }
     100% { transform: scale(1); opacity: 1; }
 }
-
 
 .teaser-video {
     width: 100%;
@@ -716,7 +636,7 @@ h1, h2, h3, .contract-address {
     padding: 0.8rem;
     border: 2px solid #ff69b4;
     border-radius: 5px;
-    box-shadow: 3px 3px #ff69b4, 0 0 10px #ff<|control439|>4;
+    box-shadow: 3px 3px #ff69b4, 0 0 10px #ff69b4;
     transition: background-color 0.3s;
 }
 
@@ -777,16 +697,16 @@ h1, h2, h3, .contract-address {
     border-radius: 15px;
     box-shadow: 8px 8px #800080, 0 0 10px #ff69b4;
     opacity: 0;
-    transition: transform 0.5s ease, box-shadow 0.3s ease, opacity 0.5s ease;
+    transition: transform 0.5s ease, box-shadow 0.3s ease;
     z-index: 1;
     cursor: pointer;
     display: none;
-    transform: scale(1);
 }
 
 .episode-panel.active {
     display: block;
     opacity: 1;
+    animation: comicPopIn 0.5s forwards;
 }
 
 .episode-panel.active:nth-child(1) {
@@ -803,15 +723,6 @@ h1, h2, h3, .contract-address {
     transform: translateY(0) scale(1.2);
     box-shadow: 12px 12px #ff69b4, 0 0 15px #ff69b4;
     animation: glowPulse 1s infinite;
-}
-
-.episode-panel.hidden {
-    opacity: 0;
-    transform: scale(1);
-}
-
-.episode-panel.initial-load {
-    animation: comicPopIn 0.5s forwards;
 }
 
 .episode-panel.visible {
@@ -1002,18 +913,11 @@ section.visible {
 
     .navbar {
         height: 50px;
-        background-size: 400px 50px; /* Adjusted for smaller screens */
+        background-size: 400px 50px;
     }
 
     .navbar::before {
-        background-size: 30px 30px;
-    }
-
-    .navbar::after {
-        width: 15px;
-        height: 15px;
-        top: 5px;
-        right: 5px;
+        background-size: 15px 15px;
     }
 
     .navbar ul {
@@ -1030,16 +934,6 @@ section.visible {
         font-size: 0.8rem;
         padding: 0.2rem 0.4rem;
         letter-spacing: 0.5px;
-    }
-
-    .navbar ul li a:hover::before {
-        width: 30px;
-        height: 30px;
-    }
-
-    .navbar ul li a:hover::after {
-        font-size: 0.8rem;
-        top: -20px;
     }
 
     .teaser-stack {
@@ -1165,14 +1059,7 @@ section.visible {
     }
 
     .navbar::before {
-        background-size: 20px 20px;
-    }
-
-    .navbar::after {
-        width: 10px;
-        height: 10px;
-        top: 5px;
-        right: 5px;
+        background-size: 10px 10px;
     }
 
     .navbar ul {
@@ -1188,16 +1075,6 @@ section.visible {
         font-size: 0.7rem;
         padding: 0.1rem 0.3rem;
         letter-spacing: 0.3px;
-    }
-
-    .navbar ul li a:hover::before {
-        width: 25px;
-        height: 25px;
-    }
-
-    .navbar ul li a:hover::after {
-        font-size: 0.6rem;
-        top: -15px;
     }
 
     .character-slot {
