@@ -43,35 +43,39 @@
         </ul>
     </nav>
 
-    <!-- Teasers Section -->
+    <!-- Teasers Section (Updated to Cycle Like Episodes) -->
     <section id="teasers" class="teasers-section">
         <h2 class="section-title">Teasers</h2>
-        <div class="teaser-grid">
-            <!-- Long Teaser -->
-            <div class="teaser-card long-teaser">
-                <h3>The Long Teaser</h3>
-                <img src="Teaser2.jpg" alt="Long Teaser" class="teaser-video">
+        <div class="teaser-carousel">
+            <div class="carousel-arrows">
+                <button class="carousel-arrow teaser-left-arrow" aria-label="Previous Teaser">❮</button>
+                <button class="carousel-arrow teaser-right-arrow" aria-label="Next Teaser">❯</button>
             </div>
-            <!-- Short Teasers -->
-            <div class="teaser-card short-teaser">
-                <h3>Character 1 Teaser</h3>
-                <img src="Teaser1.jpg" alt="Character 1 Teaser" class="teaser-video">
-            </div>
-            <div class="teaser-card short-teaser">
-                <h3>Character 2 Teaser</h3>
-                <img src="Teaser3.jpg" alt="Character 2 Teaser" class="teaser-video">
-            </div>
-            <div class="teaser-card short-teaser">
-                <h3>Character 3 Teaser</h3>
-                <img src="Teaser4.jpg" alt="Character 3 Teaser" class="teaser-video">
-            </div>
-            <div class="teaser-card short-teaser">
-                <h3>Character 4 Teaser</h3>
-                <img src="Teaser5.jpg" alt="Character 4 Teaser" class="teaser-video">
-            </div>
-            <div class="teaser-card short-teaser">
-                <h3>Tokenomics Teaser</h3>
-                <img src="Teaser6.jpg" alt="Tokenomics Teaser" class="teaser-video">
+            <div class="teaser-stack">
+                <div class="teaser-card long-teaser">
+                    <h3>The Long Teaser</h3>
+                    <img src="Teaser2.jpg" alt="Long Teaser" class="teaser-video">
+                </div>
+                <div class="teaser-card short-teaser">
+                    <h3>Character 1 Teaser</h3>
+                    <img src="Teaser1.jpg" alt="Character 1 Teaser" class="teaser-video">
+                </div>
+                <div class="teaser-card short-teaser">
+                    <h3>Character 2 Teaser</h3>
+                    <img src="Teaser3.jpg" alt="Character 2 Teaser" class="teaser-video">
+                </div>
+                <div class="teaser-card short-teaser">
+                    <h3>Character 3 Teaser</h3>
+                    <img src="Teaser4.jpg" alt="Character 3 Teaser" class="teaser-video">
+                </div>
+                <div class="teaser-card short-teaser">
+                    <h3>Character 4 Teaser</h3>
+                    <img src="Teaser5.jpg" alt="Character 4 Teaser" class="teaser-video">
+                </div>
+                <div class="teaser-card short-teaser">
+                    <h3>Tokenomics Teaser</h3>
+                    <img src="Teaser6.jpg" alt="Tokenomics Teaser" class="teaser-video">
+                </div>
             </div>
         </div>
     </section>
@@ -169,8 +173,8 @@
         <h2 class="section-title">Episodes</h2>
         <div class="episodes-comic">
             <div class="carousel-arrows">
-                <button class="carousel-arrow left-arrow" aria-label="Previous Episode">❮</button>
-                <button class="carousel-arrow right-arrow" aria-label="Next Episode">❯</button>
+                <button class="carousel-arrow episode-left-arrow" aria-label="Previous Episode">❮</button>
+                <button class="carousel-arrow episode-right-arrow" aria-label="Next Episode">❯</button>
             </div>
             <div class="episodes-stack">
                 <div class="episode-panel" data-trailer-url="https://www.youtube.com/watch?v=example1">
@@ -302,38 +306,71 @@
             });
         });
 
+        // Carousel for Teasers
+        const teaserStack = document.querySelector('.teaser-stack');
+        const teaserCardsArray = document.querySelectorAll('.teaser-card');
+        const teaserLeftArrow = document.querySelector('.teaser-left-arrow');
+        const teaserRightArrow = document.querySelector('.teaser-right-arrow');
+        let teaserIndex = 0;
+
+        function updateTeaserCarousel() {
+            teaserCardsArray.forEach((card, index) => {
+                card.style.display = index === teaserIndex ? 'block' : 'none';
+                card.classList.toggle('active', index === teaserIndex);
+            });
+
+            teaserLeftArrow.style.display = teaserIndex === 0 ? 'none' : 'inline-block';
+            teaserRightArrow.style.display = teaserIndex === teaserCardsArray.length - 1 ? 'none' : 'inline-block';
+        }
+
+        teaserLeftArrow.addEventListener('click', () => {
+            if (teaserIndex > 0) {
+                teaserIndex--;
+                updateTeaserCarousel();
+            }
+        });
+
+        teaserRightArrow.addEventListener('click', () => {
+            if (teaserIndex < teaserCardsArray.length - 1) {
+                teaserIndex++;
+                updateTeaserCarousel();
+            }
+        });
+
+        updateTeaserCarousel();
+
         // Carousel for Episodes (Desktop and Mobile)
         const episodesStack = document.querySelector('.episodes-stack');
         const episodePanelsArray = document.querySelectorAll('.episode-panel');
-        const leftArrow = document.querySelector('.left-arrow');
-        const rightArrow = document.querySelector('.right-arrow');
-        let currentIndex = 0;
+        const episodeLeftArrow = document.querySelector('.episode-left-arrow');
+        const episodeRightArrow = document.querySelector('.episode-right-arrow');
+        let episodeIndex = 0;
 
-        function updateCarousel() {
+        function updateEpisodeCarousel() {
             episodePanelsArray.forEach((panel, index) => {
-                panel.style.display = index === currentIndex ? 'block' : 'none';
-                panel.classList.toggle('active', index === currentIndex);
+                panel.style.display = index === episodeIndex ? 'block' : 'none';
+                panel.classList.toggle('active', index === episodeIndex);
             });
 
-            leftArrow.style.display = currentIndex === 0 ? 'none' : 'inline-block';
-            rightArrow.style.display = currentIndex === episodePanelsArray.length - 1 ? 'none' : 'inline-block';
+            episodeLeftArrow.style.display = episodeIndex === 0 ? 'none' : 'inline-block';
+            episodeRightArrow.style.display = episodeIndex === episodePanelsArray.length - 1 ? 'none' : 'inline-block';
         }
 
-        leftArrow.addEventListener('click', () => {
-            if (currentIndex > 0) {
-                currentIndex--;
-                updateCarousel();
+        episodeLeftArrow.addEventListener('click', () => {
+            if (episodeIndex > 0) {
+                episodeIndex--;
+                updateEpisodeCarousel();
             }
         });
 
-        rightArrow.addEventListener('click', () => {
-            if (currentIndex < episodePanelsArray.length - 1) {
-                currentIndex++;
-                updateCarousel();
+        episodeRightArrow.addEventListener('click', () => {
+            if (episodeIndex < episodePanelsArray.length - 1) {
+                episodeIndex++;
+                updateEpisodeCarousel();
             }
         });
 
-        updateCarousel();
+        updateEpisodeCarousel();
     </script>
 </body>
 </html>

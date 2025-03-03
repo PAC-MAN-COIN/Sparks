@@ -157,7 +157,6 @@ h1, h2, h3, .contract-address {
     width: 100%;
     height: 100%;
     background: linear-gradient(to bottom, rgba(26, 26, 61, 0.5), rgba(26, 26, 61, 0.5));
-    /* CSS Parallax Effect */
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
@@ -169,7 +168,6 @@ h1, h2, h3, .contract-address {
     height: 100%;
     object-fit: cover;
     opacity: 0.8;
-    /* JavaScript will apply transform for parallax */
 }
 
 /* Navigation Bar with Background Bar */
@@ -188,9 +186,10 @@ h1, h2, h3, .contract-address {
     display: flex;
     justify-content: center;
     list-style: none;
-    flex-wrap: wrap;
+    flex-wrap: nowrap; /* Prevent wrapping */
     margin: 0;
     padding: 0;
+    white-space: nowrap; /* Keep items on one line */
 }
 
 .navbar ul li {
@@ -212,7 +211,7 @@ h1, h2, h3, .contract-address {
     text-shadow: 2px 2px #ff69b4, 0 0 10px #ff69b4;
 }
 
-/* Teasers Section */
+/* Teasers Section (Cycling Layout) */
 .teasers-section {
     padding: 1rem;
     background: transparent;
@@ -220,13 +219,23 @@ h1, h2, h3, .contract-address {
     border-bottom: 2px solid #ff69b4;
 }
 
-.teaser-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1rem;
-    max-width: 1200px;
+.teaser-carousel {
+    max-width: 100%;
     margin: 0 auto;
-    padding: 0 0.5rem;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.teaser-stack {
+    position: relative;
+    width: 350px;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .teaser-card {
@@ -236,12 +245,14 @@ h1, h2, h3, .contract-address {
     padding: 0.5rem;
     text-align: center;
     box-shadow: 5px 5px #800080, 0 0 10px #ff69b4;
-    transition: transform 0.3s, box-shadow 0.3s;
+    transition: transform 0.5s, box-shadow 0.3s;
     opacity: 1;
+    display: none;
+    width: 100%;
 }
 
-.teaser-card.long-teaser {
-    grid-column: span 2;
+.teaser-card.active {
+    display: block;
 }
 
 .teaser-card h3 {
@@ -300,12 +311,11 @@ h1, h2, h3, .contract-address {
 
 .character-slot:hover .character-bg {
     opacity: 1;
-    box-shadow: 8px 8px #ff69b4; /* Apply hover effect to the background slot */
+    box-shadow: 8px 8px #ff69b4;
 }
 
 .character-slot:hover .character-image {
     transform: rotate(5deg);
-    /* Removed box-shadow to avoid stroke on transparent image */
 }
 
 .character-slot.active .character-image {
@@ -746,17 +756,36 @@ section.visible {
         width: 80px;
     }
 
+    .navbar ul {
+        justify-content: space-around; /* Distribute links evenly */
+        padding: 0 0.5rem; /* Add slight padding to prevent edge overlap */
+    }
+
+    .navbar ul li {
+        margin: 0 0.2rem; /* Further reduce margin */
+    }
+
     .navbar ul li a {
-        font-size: 1rem;
+        font-size: 0.8rem; /* Further reduce font size */
+        padding: 0.2rem 0.4rem; /* Further reduce padding */
+        letter-spacing: 0.5px; /* Reduce letter spacing */
     }
 
-    .teaser-grid {
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-        gap: 0.5rem;
+    .teaser-stack {
+        width: 300px;
+        height: auto;
+        display: block;
     }
 
-    .teaser-card.long-teaser {
-        grid-column: span 2;
+    .teaser-card {
+        position: relative;
+        width: 100%;
+        transform: none;
+        display: none;
+    }
+
+    .teaser-card:hover {
+        transform: scale(1.05);
     }
 
     .character-selection {
@@ -854,6 +883,20 @@ section.visible {
         width: 60px;
     }
 
+    .navbar ul {
+        justify-content: space-between; /* Distribute links evenly */
+    }
+
+    .navbar ul li {
+        margin: 0 0.1rem; /* Minimize margin */
+    }
+
+    .navbar ul li a {
+        font-size: 0.7rem; /* Even smaller font size */
+        padding: 0.1rem 0.3rem; /* Minimize padding */
+        letter-spacing: 0.3px; /* Minimize letter spacing */
+    }
+
     .character-slot {
         width: 200px;
         height: 280px;
@@ -863,9 +906,8 @@ section.visible {
         font-size: 1rem;
     }
 
-    .teaser-grid {
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-        gap: 0.5rem;
+    .teaser-stack {
+        width: 250px;
     }
 
     .teaser-card.long-teaser,
