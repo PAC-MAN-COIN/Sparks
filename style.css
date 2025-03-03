@@ -77,6 +77,16 @@ body {
     100% { clip-path: circle(150% at 50% 50%); }
 }
 
+.radial-wipe-overlay.wipe-out {
+    display: block;
+    animation: radialWipeOut 1s forwards;
+}
+
+@keyframes radialWipeOut {
+    0% { clip-path: circle(150% at 50% 50%); }
+    100% { clip-path: circle(0% at 50% 50%); }
+}
+
 /* Pop-Art Inspired Typography with Chewy Font */
 h1, h2, h3 {
     font-family: 'Chewy', cursive;
@@ -155,7 +165,7 @@ h1, h2, h3, .contract-address {
 
 .hero-text {
     width: 100%;
-    max-width: 800px; /* Adjust based on your image size */
+    max-width: 800px;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -867,6 +877,103 @@ h1, h2, h3, .contract-address {
     z-index: 1;
 }
 
+/* Comic Pages Section */
+.comic-section {
+    padding: 2rem;
+    background: linear-gradient(to bottom, #1a1a3d, #800080);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.comic-title {
+    font-family: 'Chewy', cursive;
+    font-size: 3rem;
+    color: #ff69b4;
+    text-shadow: 2px 2px #800080, 0 0 10px #ff69b4;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.comic-pages {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.comic-stack {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 500px;
+}
+
+.comic-spread {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+}
+
+.comic-page {
+    max-width: 100%;
+    height: auto;
+    border: 3px solid #800080;
+    box-shadow: 5px 5px #ff69b4;
+    transition: transform 0.3s ease;
+}
+
+.comic-page:hover {
+    transform: scale(1.05);
+}
+
+/* Desktop: Two pages side by side */
+@media (min-width: 769px) {
+    .comic-page {
+        width: 45%;
+        max-height: 80vh;
+        object-fit: contain;
+    }
+}
+
+/* Mobile: One page at a time */
+@media (max-width: 768px) {
+    .comic-page {
+        width: 90%;
+        max-height: 70vh;
+        object-fit: contain;
+    }
+}
+
+.back-button {
+    display: inline-block;
+    margin-top: 2rem;
+    padding: 1rem 2rem;
+    background-color: #ff69b4;
+    color: #fff;
+    text-decoration: none;
+    font-family: 'Chewy', cursive;
+    font-size: 1.5rem;
+    border: 3px solid #800080;
+    border-radius: 5px;
+    box-shadow: 3px 3px #800080, 0 0 10px #ff69b4;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.back-button:hover {
+    transform: scale(1.1);
+    box-shadow: 3px 3px #ff69b4, 0 0 15px #ff69b4;
+}
+
 /* Animations */
 @keyframes popIn {
     0% { transform: scale(0); opacity: 0; }
@@ -926,7 +1033,7 @@ section.visible {
     }
 
     .hero-text {
-        max-width: 600px; /* Adjust for smaller screens */
+        max-width: 600px;
     }
 
     .speech-bubble p {
@@ -1007,7 +1114,7 @@ section.visible {
 
     .roadmap-item:nth-child(odd),
     .roadmap-item:nth-child(even) {
-        transform: translateX(0) rotate(0deg); /* Reset tilt for smaller screens */
+        transform: translateX(0) rotate(0deg);
     }
 
     .episodes-stack {
@@ -1042,7 +1149,7 @@ section.visible {
 
 @media (max-width: 480px) {
     .hero-text {
-        max-width: 400px; /* Adjust for very small screens */
+        max-width: 400px;
     }
 
     .speech-bubble p {

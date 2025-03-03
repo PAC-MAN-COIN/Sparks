@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sparks - Episode 1</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Adding comic-style fonts from Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Chewy&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Cursor Glow Overlay -->
+    <div class="cursor-glow"></div>
+
+    <!-- Comic Effect Container (for POW!, BAM! effects) -->
+    <div class="comic-effect"></div>
+
+    <!-- Radial Wipe Overlay for Transition Out -->
+    <div class="radial-wipe-overlay" id="radialWipeOverlay"></div>
+
+    <!-- Comic Pages Section -->
+    <section class="comic-section">
+        <h1 class="comic-title">Sparks - Episode 1</h1>
+        <div class="comic-pages">
+            <div class="carousel-arrows">
+                <button class="carousel-arrow comic-left-arrow" aria-label="Previous Page">❮</button>
+                <button class="carousel-arrow comic-right-arrow" aria-label="Next Page">❯</button>
+            </div>
+            <div class="comic-stack">
+                <!-- Comic pages will be dynamically loaded -->
+            </div>
+        </div>
+        <a href="index.html" class="back-button">Back to Home</a>
+    </section>
+
+    <!-- JavaScript for Comic Page Navigation and Transition -->
+    <script>
+        // Cursor Glow Effect
+        const cursorGlow = document.querySelector('.cursor-glow');
+        document.addEventListener('mousemove', (e) => {
+            const x = e.clientX;
+            const y = e.clientY;
+            cursorGlow.style.left = `${x}px`;
+            cursorGlow.style.top = `${y}px`;
+        });
+
+        // Comic Sound Effect on Any Click
+        const comicEffect = document.querySelector('.comic-effect');
+        function createComicEffect(x, y) {
+            const effect = document.createElement('div');
+            effect.classList.add('comic-sound');
+            effect.style.left = `${x}px`;
+            effect.style.top = `${y}px`;
+            const sounds = ['POW!', 'BAM!', 'ZAP!', 'BOOM!'];
+            effect.textContent = sounds[Math.floor(Math.random() * sounds.length)];
+            comicEffect.appendChild(effect);
+            setTimeout(() => {
+                effect.remove();
+            }, 1000);
+        }
+
+        document.addEventListener('click', (e) => {
+            const x = e.clientX;
+            const y = e.clientY;
+            createComicEffect(x, y);
+        });
+
+        // Transition Out Effect on Page Load
+        const radialWipeOverlay = document.getElementById('radialWipeOverlay');
+        if (sessionStorage.getItem('transitionOut') === 'true') {
+            radialWipeOverlay.style.display = 'block';
+            radialWipeOverlay.style.clipPath = 'circle(150% at 50% 50%)';
+            radialWipeOverlay.classList.add('wipe-out');
+            sessionStorage.removeItem('transitionOut'); // Clear the flag
+        }
+
+        // Comic Pages Carousel
+        const comicStack = document.querySelector('.comic-stack');
+        const comicLeftArrow = document.querySelector('.comic-left-arrow');
+        const comicRightArrow = document.querySelector('.comic-right-arrow');
+        let comicIndex = 0;
+
+        // List of comic pages (update this with your actual page names)
+        const comicPages = [
+            'page1.jpg',
+            'page2.jpg',
+            'page3.jpg',
+            'page4.jpg',
+            'page5.jpg'
+            // Add more pages as needed
+        ];
+
+        // Function to create and display comic spreads
+        function updateComicCarousel() {
+            comicStack.innerHTML = ''; // Clear current pages
+
+            if (window.innerWidth > 768) {
+                // Desktop: Show two pages side by side
+                const leftPageIndex = comicIndex * 2;
+                const rightPageIndex = comicIndex * 2 + 1;
+
+                const spread = document.createElement('div');
+                spread.classList.add('comic-spread');
+
+                if (leftPageIndex < comicPages.length) {
+                    const leftPage = document.createElement('img');
+                    leftPage.src = `episode1/${comicPages[leftPageIndex]}`;
+                    leftPage.alt = `Page ${leftPageIndex + 1}`;
+                    leftPage.classList.add('comic-page');
+                    spread.appendChild(leftPage);
+                }
+
+                if (rightPageIndex < comicPages.length) {
+                    const rightPage = document.createElement('img');
+                    rightPage.src = `episode1/${comicPages[rightPageIndex]}`;
+                    rightPage.alt = `Page ${rightPageIndex + 1}`;
+                    rightPage.classList.add('comic-page');
+                    spread.appendChild(rightPage);
+                }
+
+                comicStack.appendChild(spread);
+
+                // Update arrows visibility
+                comicLeftArrow.style.display = comicIndex === 0 ? 'none' : 'inline-block';
+                comicRightArrow.style.display = (comicIndex + 1) * 2 >= comicPages.length ? 'none' : 'inline-block';
+            } else {
+                // Mobile: Show one page at a time
+                const currentPageIndex = comicIndex;
+
+                const page = document.createElement('img');
+                page.src = `episode1/${comicPages[currentPageIndex]}`;
+                page.alt = `Page ${currentPageIndex + 1}`;
+                page.classList.add('comic-page');
+                comicStack.appendChild(page);
+
+                // Update arrows visibility
+                comicLeftArrow.style.display = comicIndex === 0 ? 'none' : 'inline-block';
+                comicRightArrow.style.display = comicIndex === comicPages.length - 1 ? 'none' : 'inline-block';
+            }
+        }
+
+        comicLeftArrow.addEventListener('click', () => {
+            if (comicIndex > 0) {
+                comicIndex--;
+                updateComicCarousel();
+            }
+        });
+
+        comicRightArrow.addEventListener('click', () => {
+            if (window.innerWidth > 768) {
+                if ((comicIndex + 1) * 2 < comicPages.length) {
+                    comicIndex++;
+                    updateComicCarousel();
+                }
+            } else {
+                if (comicIndex < comicPages.length - 1) {
+                    comicIndex++;
+                    updateComicCarousel();
+                }
+            }
+        });
+
+        // Initial load
+        updateComicCarousel();
+
+        // Update on window resize
+        window.addEventListener('resize', updateComicCarousel);
+    </script>
+</body>
+</html>

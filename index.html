@@ -21,49 +21,41 @@
     <!-- Header Section with Hero Animation and Speech Bubbles -->
     <header class="hero">
         <div class="hero-content">
-            <img src="banner_text.png" alt="Banner Text" class="hero-text">
+            <img src="banner_text.png" class="hero-text">
         </div>
         <div class="hero-background">
             <img src="Banner3.png" alt="Hero Background" class="hero-image">
         </div>
     </header>
-
-    <!-- Teasers Section -->
-    <section id="teasers" class="teasers-section">
-        <h2 class="section-title">Teasers</h2>
-        <div class="teaser-carousel">
+	
+	
+    <!-- Episodes Section -->
+    <section id="episodes" class="episodes-section">
+        <h2 class="section-title">Episodes</h2>
+        <div class="episodes-comic">
             <div class="carousel-arrows">
-                <button class="carousel-arrow teaser-left-arrow" aria-label="Previous Teaser">❮</button>
-                <button class="carousel-arrow teaser-right-arrow" aria-label="Next Teaser">❯</button>
+                <button class="carousel-arrow episode-left-arrow" aria-label="Previous Episode">❮</button>
+                <button class="carousel-arrow episode-right-arrow" aria-label="Next Episode">❯</button>
             </div>
-            <div class="teaser-stack">
-                <div class="teaser-card long-teaser">
-                    <h3>The Long Teaser</h3>
-                    <img src="Teaser2.jpg" alt="Long Teaser" class="teaser-video">
+            <div class="episodes-stack">
+                <div class="episode-panel" data-episode-url="episode1.html">
+                    <img src="Episode1.png" alt="Episode 1" class="episode-image">
+                    <div class="episode-info">
+                        <h3>Episode 1</h3>
+                        <p>The adventure begins!</p>
+                    </div>
                 </div>
-                <div class="teaser-card short-teaser">
-                    <h3>Character 1 Teaser</h3>
-                    <img src="Teaser1.jpg" alt="Character 1 Teaser" class="teaser-video">
-                </div>
-                <div class="teaser-card short-teaser">
-                    <h3>Character 2 Teaser</h3>
-                    <img src="Teaser3.jpg" alt="Character 2 Teaser" class="teaser-video">
-                </div>
-                <div class="teaser-card short-teaser">
-                    <h3>Character 3 Teaser</h3>
-                    <img src="Teaser4.jpg" alt="Character 3 Teaser" class="teaser-video">
-                </div>
-                <div class="teaser-card short-teaser">
-                    <h3>Character 4 Teaser</h3>
-                    <img src="Teaser5.jpg" alt="Character 4 Teaser" class="teaser-video">
-                </div>
-                <div class="teaser-card short-teaser">
-                    <h3>Tokenomics Teaser</h3>
-                    <img src="Teaser6.jpg" alt="Tokenomics Teaser" class="teaser-video">
+                <div class="episode-panel" data-episode-url="episode1.html">
+                    <img src="Logo.jpg" alt="Episode 2" class="episode-image">
+                    <div class="episode-info">
+                        <h3>Episode 2</h3>
+                        <p>A new threat emerges.</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
+
 
     <!-- Characters Section -->
     <section id="characters" class="characters-section">
@@ -153,28 +145,38 @@
         </div>
     </section>
 
-    <!-- Episodes Section -->
-    <section id="episodes" class="episodes-section">
-        <h2 class="section-title">Episodes</h2>
-        <div class="episodes-comic">
+    <!-- Teasers Section -->
+    <section id="teasers" class="teasers-section">
+        <h2 class="section-title">Teasers</h2>
+        <div class="teaser-carousel">
             <div class="carousel-arrows">
-                <button class="carousel-arrow episode-left-arrow" aria-label="Previous Episode">❮</button>
-                <button class="carousel-arrow episode-right-arrow" aria-label="Next Episode">❯</button>
+                <button class="carousel-arrow teaser-left-arrow" aria-label="Previous Teaser">❮</button>
+                <button class="carousel-arrow teaser-right-arrow" aria-label="Next Teaser">❯</button>
             </div>
-            <div class="episodes-stack">
-                <div class="episode-panel" data-trailer-url="https://www.youtube.com/watch?v=example1">
-                    <img src="Episode1.png" alt="Episode 1" class="episode-image">
-                    <div class="episode-info">
-                        <h3>Episode 1</h3>
-                        <p>The adventure begins!</p>
-                    </div>
+            <div class="teaser-stack">
+                <div class="teaser-card long-teaser">
+                    <h3>The Long Teaser</h3>
+                    <img src="Teaser2.jpg" alt="Long Teaser" class="teaser-video">
                 </div>
-                <div class="episode-panel" data-trailer-url="https://www.youtube.com/watch?v=example2">
-                    <img src="Logo.jpg" alt="Episode 2" class="episode-image">
-                    <div class="episode-info">
-                        <h3>Episode 2</h3>
-                        <p>A new threat emerges.</p>
-                    </div>
+                <div class="teaser-card short-teaser">
+                    <h3>Character 1 Teaser</h3>
+                    <img src="Teaser1.jpg" alt="Character 1 Teaser" class="teaser-video">
+                </div>
+                <div class="teaser-card short-teaser">
+                    <h3>Character 2 Teaser</h3>
+                    <img src="Teaser3.jpg" alt="Character 2 Teaser" class="teaser-video">
+                </div>
+                <div class="teaser-card short-teaser">
+                    <h3>Character 3 Teaser</h3>
+                    <img src="Teaser4.jpg" alt="Character 3 Teaser" class="teaser-video">
+                </div>
+                <div class="teaser-card short-teaser">
+                    <h3>Character 4 Teaser</h3>
+                    <img src="Teaser5.jpg" alt="Character 4 Teaser" class="teaser-video">
+                </div>
+                <div class="teaser-card short-teaser">
+                    <h3>Tokenomics Teaser</h3>
+                    <img src="Teaser6.jpg" alt="Tokenomics Teaser" class="teaser-video">
                 </div>
             </div>
         </div>
@@ -301,25 +303,24 @@
             });
         });
 
-        // Radial Wipe Effect for Episode Panels
-        const episodePanelsInteractive = document.querySelectorAll('.episode-panel');
-        const radialWipeOverlay = document.querySelector('.radial-wipe-overlay');
+		// Redirect to Episode Page
+		const episodePanelsInteractive = document.querySelectorAll('.episode-panel');
+		const radialWipeOverlay = document.querySelector('.radial-wipe-overlay');
 
-        episodePanelsInteractive.forEach(panel => {
-            panel.addEventListener('click', (e) => {
-                e.preventDefault();
-                const trailerUrl = panel.getAttribute('data-trailer-url');
+		episodePanelsInteractive.forEach(panel => {
+			panel.addEventListener('click', (e) => {
+				e.preventDefault();
+				const episodeUrl = panel.getAttribute('data-episode-url');
 
-                radialWipeOverlay.style.display = 'block';
-                radialWipeOverlay.classList.add('wipe');
+				radialWipeOverlay.style.display = 'block';
+				radialWipeOverlay.classList.add('wipe');
 
-                setTimeout(() => {
-                    window.open(trailerUrl, '_blank');
-                    radialWipeOverlay.classList.remove('wipe');
-                    radialWipeOverlay.style.display = 'none';
-                }, 1000);
-            });
-        });
+				setTimeout(() => {
+					sessionStorage.setItem('transitionOut', 'true'); // Set flag for transition out
+					window.location.href = episodeUrl;
+				}, 1000);
+			});
+		});
 
         // Carousel for Teasers
         const teaserStack = document.querySelector('.teaser-stack');
