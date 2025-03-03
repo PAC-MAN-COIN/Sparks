@@ -9,16 +9,25 @@
     <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Header Section with Hero Animation -->
+    <!-- Full-Screen Overlay for Radial Wipe Effect -->
+    <div class="radial-wipe-overlay"></div>
+
+    <!-- Header Section with Hero Animation and Speech Bubbles -->
     <header class="hero">
         <div class="hero-content">
             <h1 class="hero-title">SPARKS</h1>
-            <p class="hero-subtitle">A Comic Universe Meets Crypto Revolution!</p>
+            <div class="speech-bubble-container">
+                <div class="speech-bubble">
+                    <p>« First Comic for mature audience on Solana »</p>
+                </div>
+                <div class="speech-bubble">
+                    <p>Explore the Sparks Universe Now!</p>
+                </div>
+            </div>
             <a href="#teasers" class="cta-button">Explore the Universe</a>
         </div>
         <div class="hero-background">
-            <!-- Placeholder for hero background image -->
-            <img src="Logo.jpg" alt="Hero Background" class="hero-image">
+            <img src="Banner.jpg" alt="Hero Background" class="hero-image">
         </div>
     </header>
 
@@ -41,30 +50,28 @@
             <!-- Long Teaser -->
             <div class="teaser-card long-teaser">
                 <h3>The Long Teaser</h3>
-                <!-- Placeholder for video -->
-                <img src="https://via.placeholder.com/600x400.png?text=Long+Teaser+Video" alt="Long Teaser" class="teaser-video">
+                <img src="Teaser2.jpg" alt="Long Teaser" class="teaser-video">
             </div>
-            <!-- Short Teasers for Characters -->
-            <div class="teaser-card">
+            <!-- Short Teasers -->
+            <div class="teaser-card short-teaser">
                 <h3>Character 1 Teaser</h3>
-                <img src="https://via.placeholder.com/300x200.png?text=Character+1+Teaser" alt="Character 1 Teaser" class="teaser-video">
+                <img src="Teaser1.jpg" alt="Character 1 Teaser" class="teaser-video">
             </div>
-            <div class="teaser-card">
+            <div class="teaser-card short-teaser">
                 <h3>Character 2 Teaser</h3>
-                <img src="https://via.placeholder.com/300x200.png?text=Character+2+Teaser" alt="Character 2 Teaser" class="teaser-video">
+                <img src="Teaser3.jpg" alt="Character 2 Teaser" class="teaser-video">
             </div>
-            <div class="teaser-card">
+            <div class="teaser-card short-teaser">
                 <h3>Character 3 Teaser</h3>
-                <img src="https://via.placeholder.com/300x200.png?text=Character+3+Teaser" alt="Character 3 Teaser" class="teaser-video">
+                <img src="Teaser4.jpg" alt="Character 3 Teaser" class="teaser-video">
             </div>
-            <div class="teaser-card">
+            <div class="teaser-card short-teaser">
                 <h3>Character 4 Teaser</h3>
-                <img src="https://via.placeholder.com/300x200.png?text=Character+4+Teaser" alt="Character 4 Teaser" class="teaser-video">
+                <img src="Teaser5.jpg" alt="Character 4 Teaser" class="teaser-video">
             </div>
-            <!-- Tokenomics Teaser -->
-            <div class="teaser-card">
+            <div class="teaser-card short-teaser">
                 <h3>Tokenomics Teaser</h3>
-                <img src="https://via.placeholder.com/300x200.png?text=Tokenomics+Teaser" alt="Tokenomics Teaser" class="teaser-video">
+                <img src="Teaser6.jpg" alt="Tokenomics Teaser" class="teaser-video">
             </div>
         </div>
     </section>
@@ -78,28 +85,28 @@
                 <div class="character-bg character-bg-blue">
                     <h3 class="character-name">Character 1</h3>
                 </div>
-                <img src="Logo.jpg" alt="Character 1" class="character-image">
+                <img src="Char1.png" alt="Character 1" class="character-image">
             </div>
             <!-- Character 2 -->
             <div class="character-slot">
                 <div class="character-bg character-bg-yellow">
                     <h3 class="character-name">Character 2</h3>
                 </div>
-                <img src="Logo.jpg" alt="Character 2" class="character-image">
+                <img src="Char2.png" alt="Character 2" class="character-image">
             </div>
             <!-- Character 3 -->
             <div class="character-slot">
                 <div class="character-bg character-bg-purple">
                     <h3 class="character-name">Character 3</h3>
                 </div>
-                <img src="Logo.jpg" alt="Character 3" class="character-image">
+                <img src="Char3.png" alt="Character 3" class="character-image">
             </div>
             <!-- Character 4 -->
             <div class="character-slot">
                 <div class="character-bg character-bg-red">
                     <h3 class="character-name">Character 4</h3>
                 </div>
-                <img src="Logo.jpg" alt="Character 4" class="character-image">
+                <img src="Char4.png" alt="Character 4" class="character-image">
             </div>
         </div>
     </section>
@@ -108,9 +115,21 @@
     <section id="tokenomics" class="tokenomics-section">
         <h2 class="section-title">Tokenomics</h2>
         <div class="tokenomics-content">
-            <p>Discover the $SPARK token and its role in the Sparks universe!</p>
-            <!-- Placeholder for tokenomics chart -->
-            <img src="https://via.placeholder.com/800x400.png?text=Tokenomics+Chart" alt="Tokenomics Chart" class="tokenomics-chart">
+            <p class="contract-address">Contract Address: 0x1234567890abcdef1234567890abcdef12345678</p>
+            <div class="tokenomics-boxes">
+                <div class="tokenomics-box">
+                    <h3>Market Cap</h3>
+                    <p>$10,000,000</p>
+                </div>
+                <div class="tokenomics-box">
+                    <h3>Current Price</h3>
+                    <p>$0.05</p>
+                </div>
+                <div class="tokenomics-box">
+                    <h3>Total Supply</h3>
+                    <p>1,000,000,000 $SPARK</p>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -148,16 +167,26 @@
     <!-- Episodes Section -->
     <section id="episodes" class="episodes-section">
         <h2 class="section-title">Episodes</h2>
-        <div class="episodes-grid">
-            <div class="episode-card">
-                <img src="Logo.jpg" alt="Episode 1" class="episode-image">
-                <h3>Episode 1</h3>
-                <p>The adventure begins!</p>
+        <div class="episodes-comic">
+            <div class="carousel-arrows">
+                <button class="carousel-arrow left-arrow" aria-label="Previous Episode">❮</button>
+                <button class="carousel-arrow right-arrow" aria-label="Next Episode">❯</button>
             </div>
-            <div class="episode-card">
-                <img src="Logo.jpg" alt="Episode 2" class="episode-image">
-                <h3>Episode 2</h3>
-                <p>A new threat emerges.</p>
+            <div class="episodes-stack">
+                <div class="episode-panel" data-trailer-url="https://www.youtube.com/watch?v=example1">
+                    <img src="Episode1.png" alt="Episode 1" class="episode-image">
+                    <div class="episode-info">
+                        <h3>Episode 1</h3>
+                        <p>The adventure begins!</p>
+                    </div>
+                </div>
+                <div class="episode-panel" data-trailer-url="https://www.youtube.com/watch?v=example2">
+                    <img src="Logo.jpg" alt="Episode 2" class="episode-image">
+                    <div class="episode-info">
+                        <h3>Episode 2</h3>
+                        <p>A new threat emerges.</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -178,7 +207,7 @@
         <p>© 2025 Sparks. All rights reserved.</p>
     </footer>
 
-    <!-- JavaScript for Scroll Animations and Effects -->
+    <!-- JavaScript for Scroll Animations, Effects, Radial Wipe, and Carousel -->
     <script>
         // Smooth scrolling for navbar links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -199,12 +228,18 @@
             });
         }
 
-        // Fade-in and slide animations for sections on scroll
+        // Fade-in and slide animations for sections and nested elements on scroll
         const sections = document.querySelectorAll('section');
         const roadmapItems = document.querySelectorAll('.roadmap-item');
+        const tokenomicsBoxes = document.querySelectorAll('.tokenomics-box');
+        const contractAddress = document.querySelector('.contract-address');
+        const episodePanels = document.querySelectorAll('.episode-panel');
+        const teaserCards = document.querySelectorAll('.teaser-card');
+        
         const options = {
             threshold: 0.2
         };
+        
         const observer = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -221,6 +256,21 @@
             observer.observe(item);
         });
 
+        if (contractAddress) {
+            observer.observe(contractAddress);
+        }
+        tokenomicsBoxes.forEach(box => {
+            observer.observe(box);
+        });
+
+        episodePanels.forEach(panel => {
+            observer.observe(panel);
+        });
+
+        teaserCards.forEach(card => {
+            observer.observe(card);
+        });
+
         // Character selection animation
         const characterSlots = document.querySelectorAll('.character-slot');
         characterSlots.forEach(slot => {
@@ -231,6 +281,59 @@
                 slot.classList.remove('active');
             });
         });
+
+        // Radial Wipe Effect for Episode Panels
+        const episodePanelsInteractive = document.querySelectorAll('.episode-panel');
+        const radialWipeOverlay = document.querySelector('.radial-wipe-overlay');
+
+        episodePanelsInteractive.forEach(panel => {
+            panel.addEventListener('click', (e) => {
+                e.preventDefault();
+                const trailerUrl = panel.getAttribute('data-trailer-url');
+
+                radialWipeOverlay.style.display = 'block';
+                radialWipeOverlay.classList.add('wipe');
+
+                setTimeout(() => {
+                    window.open(trailerUrl, '_blank');
+                    radialWipeOverlay.classList.remove('wipe');
+                    radialWipeOverlay.style.display = 'none';
+                }, 1000);
+            });
+        });
+
+        // Carousel for Episodes (Desktop and Mobile)
+        const episodesStack = document.querySelector('.episodes-stack');
+        const episodePanelsArray = document.querySelectorAll('.episode-panel');
+        const leftArrow = document.querySelector('.left-arrow');
+        const rightArrow = document.querySelector('.right-arrow');
+        let currentIndex = 0;
+
+        function updateCarousel() {
+            episodePanelsArray.forEach((panel, index) => {
+                panel.style.display = index === currentIndex ? 'block' : 'none';
+                panel.classList.toggle('active', index === currentIndex);
+            });
+
+            leftArrow.style.display = currentIndex === 0 ? 'none' : 'inline-block';
+            rightArrow.style.display = currentIndex === episodePanelsArray.length - 1 ? 'none' : 'inline-block';
+        }
+
+        leftArrow.addEventListener('click', () => {
+            if (currentIndex > 0) {
+                currentIndex--;
+                updateCarousel();
+            }
+        });
+
+        rightArrow.addEventListener('click', () => {
+            if (currentIndex < episodePanelsArray.length - 1) {
+                currentIndex++;
+                updateCarousel();
+            }
+        });
+
+        updateCarousel();
     </script>
 </body>
 </html>
