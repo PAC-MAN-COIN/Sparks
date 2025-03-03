@@ -1,0 +1,605 @@
+/* Reset and Basic Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+    overflow-x: hidden;
+}
+
+/* Pop-Art Inspired Typography */
+h1, h2, h3 {
+    font-family: 'Bangers', cursive;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.section-title {
+    font-size: 3rem;
+    color: #ff4500;
+    text-align: center;
+    margin-bottom: 2rem;
+    text-shadow: 3px 3px #000;
+    position: relative;
+}
+
+/* Animated underline for section titles */
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 5px;
+    background-color: #ffd700;
+    animation: expand 1s ease-in-out;
+}
+
+/* Hero Section */
+.hero {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    overflow: hidden;
+}
+
+.hero-content {
+    z-index: 2;
+    color: #fff;
+}
+
+.hero-title {
+    font-size: 6rem;
+    color: #ff4500;
+    text-shadow: 5px 5px #000;
+    animation: popIn 1s ease-out;
+}
+
+.hero-subtitle {
+    font-size: 1.5rem;
+    margin: 1rem 0;
+    text-shadow: 2px 2px #000;
+    animation: fadeIn 1.5s ease-in;
+}
+
+.cta-button {
+    display: inline-block;
+    padding: 1rem 2rem;
+    background-color: #ff4500;
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.2rem;
+    border-radius: 5px;
+    border: 3px solid #000;
+    box-shadow: 3px 3px #000;
+    transition: transform 0.2s, background-color 0.3s;
+}
+
+.cta-button:hover {
+    transform: scale(1.1);
+    background-color: #ffd700;
+}
+
+.hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+}
+
+.hero-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.8;
+    animation: zoomIn 10s infinite alternate;
+}
+
+/* Navigation Bar */
+.navbar {
+    position: sticky;
+    top: 0;
+    background-color: #000;
+    padding: 1rem 0;
+    z-index: 10;
+}
+
+.navbar ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    flex-wrap: wrap; /* Allow wrapping on mobile */
+}
+
+.navbar ul li {
+    margin: 0.5rem 1rem; /* Reduced margin for mobile */
+}
+
+.navbar ul li a {
+    color: #fff;
+    font-size: 1.2rem;
+    text-decoration: none;
+    font-family: 'Bangers', cursive;
+    letter-spacing: 1px;
+    text-shadow: 2px 2px #ff4500;
+    transition: color 0.3s, text-shadow 0.3s;
+}
+
+.navbar ul li a:hover {
+    color: #ffd700;
+    text-shadow: 2px 2px #000;
+}
+
+/* Teasers Section */
+.teasers-section {
+    padding: 2rem 1rem; /* Reduced padding for mobile */
+    background-color: #fff;
+    border-top: 5px solid #000;
+    border-bottom: 5px solid #000;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.teaser-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Adjusted for mobile */
+    gap: 1rem; /* Reduced gap for mobile */
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.teaser-card {
+    background-color: #ffd700;
+    border: 3px solid #000;
+    border-radius: 10px;
+    padding: 1rem;
+    text-align: center;
+    box-shadow: 5px 5px #000;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.teaser-card:hover {
+    transform: scale(1.05);
+    box-shadow: 8px 8px #ff4500;
+}
+
+.long-teaser {
+    grid-column: span 2;
+}
+
+.teaser-video {
+    width: 100%;
+    border: 2px solid #000;
+    border-radius: 5px;
+    transition: border-color 0.3s;
+}
+
+.teaser-video:hover {
+    border-color: #ff4500;
+}
+
+/* Updated Characters Section (Fit on One Line) */
+.characters-section {
+    padding: 2rem 1rem; /* Reduced padding for mobile */
+    background: url('https://via.placeholder.com/1920x1080.png?text=Comic+Grid+Background') no-repeat center center/cover;
+    position: relative;
+    overflow: hidden;
+}
+
+.character-selection {
+    display: flex;
+    justify-content: center;
+    gap: 1rem; /* Reduced gap to fit all slots */
+    max-width: 1200px;
+    margin: 0 auto;
+    flex-wrap: nowrap; /* Prevent wrapping on larger screens */
+}
+
+.character-slot {
+    position: relative;
+    width: 250px; /* Reduced width to fit all slots */
+    height: 400px; /* Adjusted height */
+    text-align: center;
+    transition: transform 0.3s;
+}
+
+.character-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform: skew(-15deg);
+    z-index: 1;
+    opacity: 0.7;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    padding-bottom: 1.5rem;
+    transition: opacity 0.3s;
+}
+
+.character-bg-blue { background-color: #00b7eb; }
+.character-bg-yellow { background-color: #ffd700; }
+.character-bg-purple { background-color: #ff00ff; }
+.character-bg-red { background-color: #ff4500; }
+
+.character-name {
+    font-size: 1.8rem; /* Slightly smaller for better fit */
+    color: #fff;
+    text-shadow: 3px 3px #000;
+    transform: skew(15deg); /* Counteract the skew of the background */
+    z-index: 2;
+}
+
+.character-image {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    height: 80%;
+    object-fit: cover;
+    border: 3px solid #000;
+    border-radius: 10px;
+    box-shadow: 5px 5px #000;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.character-slot:hover {
+    transform: scale(1.1);
+}
+
+.character-slot:hover .character-bg {
+    opacity: 1;
+}
+
+.character-slot:hover .character-image {
+    transform: rotate(5deg);
+    box-shadow: 8px 8px #ff4500;
+}
+
+.character-slot.active .character-image {
+    animation: pulse 1s infinite;
+}
+
+/* Tokenomics Section */
+.tokenomics-section {
+    padding: 2rem 1rem; /* Reduced padding for mobile */
+    background-color: #000;
+    color: #fff;
+    position: relative;
+}
+
+.tokenomics-content {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.tokenomics-chart {
+    width: 100%;
+    border: 3px solid #ff4500;
+    border-radius: 10px;
+    box-shadow: 5px 5px #ff4500;
+    transition: transform 0.5s;
+}
+
+.tokenomics-chart.visible {
+    transform: rotate(360deg);
+}
+
+/* Roadmap Section */
+.roadmap-section {
+    padding: 2rem 1rem; /* Reduced padding for mobile */
+    background-color: #fff;
+}
+
+.roadmap-timeline {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.roadmap-timeline::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    width: 4px;
+    height: 100%;
+    background-color: #ff4500;
+    transform: translateX(-50%);
+    z-index: 0;
+}
+
+.roadmap-item {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    margin-bottom: 1.5rem; /* Reduced margin for mobile */
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: opacity 0.5s, transform 0.5s;
+    z-index: 1;
+}
+
+.roadmap-item:nth-child(odd) .roadmap-content {
+    margin-left: auto;
+    margin-right: 1rem; /* Reduced margin for mobile */
+    text-align: right;
+}
+
+.roadmap-item:nth-child(even) .roadmap-content {
+    margin-right: auto;
+    margin-left: 1rem; /* Reduced margin for mobile */
+    text-align: left;
+}
+
+.roadmap-item.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.roadmap-content {
+    background-color: #ffd700;
+    padding: 0.8rem; /* Reduced padding for mobile */
+    border: 2px solid #000;
+    border-radius: 5px;
+    box-shadow: 3px 3px #000;
+    transition: background-color 0.3s;
+}
+
+.roadmap-content h3 {
+    color: #ff4500;
+    text-shadow: 2px 2px #000;
+}
+
+.roadmap-item:hover .roadmap-content {
+    background-color: #ff4500;
+}
+
+/* Episodes Section */
+.episodes-section {
+    padding: 2rem 1rem; /* Reduced padding for mobile */
+    background: linear-gradient(to bottom, #ffd700, #ff4500);
+}
+
+.episodes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Adjusted for mobile */
+    gap: 1rem; /* Reduced gap for mobile */
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.episode-card {
+    background-color: #fff;
+    border: 3px solid #000;
+    border-radius: 10px;
+    padding: 0.8rem; /* Reduced padding for mobile */
+    text-align: center;
+    box-shadow: 5px 5px #000;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.episode-card:hover {
+    transform: scale(1.05);
+    box-shadow: 8px 8px #ff4500;
+}
+
+.episode-image {
+    width: 100%;
+    border: 2px solid #000;
+    border-radius: 5px;
+}
+
+/* Community Section */
+.community-section {
+    padding: 2rem 1rem; /* Reduced padding for mobile */
+    background-color: #000;
+    color: #fff;
+    text-align: center;
+}
+
+.social-links {
+    margin-top: 1rem; /* Reduced margin for mobile */
+}
+
+.social-icon {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    margin: 0.5rem; /* Adjusted margin for mobile */
+    background-color: #ff4500;
+    color: #fff;
+    text-decoration: none;
+    border: 2px solid #fff;
+    border-radius: 5px;
+    box-shadow: 3px 3px #fff;
+    transition: transform 0.2s, background-color 0.3s;
+}
+
+.social-icon:hover {
+    transform: scale(1.1);
+    background-color: #ffd700;
+}
+
+/* Footer */
+.footer {
+    padding: 1rem;
+    background-color: #000;
+    color: #fff;
+    text-align: center;
+    border-top: 5px solid #ff4500;
+}
+
+/* Animations */
+@keyframes popIn {
+    0% { transform: scale(0); opacity: 0; }
+    80% { transform: scale(1.2); opacity: 1; }
+    100% { transform: scale(1); }
+}
+
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+@keyframes zoomIn {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.1); }
+}
+
+@keyframes expand {
+    0% { width: 0; }
+    100% { width: 100px; }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+section, .roadmap-item {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.5s, transform 0.5s;
+}
+
+section.visible, .roadmap-item.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .character-selection {
+        flex-wrap: wrap; /* Allow wrapping on medium screens if needed */
+    }
+
+    .character-slot {
+        width: 200px; /* Further reduce width for medium screens */
+        height: 350px;
+    }
+
+    .character-name {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero {
+        height: 70vh; /* Reduced height for mobile */
+    }
+
+    .hero-title {
+        font-size: 3.5rem; /* Reduced font size for mobile */
+    }
+
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+
+    .cta-button {
+        padding: 0.8rem 1.5rem;
+        font-size: 1rem;
+    }
+
+    .section-title {
+        font-size: 2rem; /* Reduced font size for mobile */
+    }
+
+    .section-title::after {
+        width: 80px; /* Adjusted underline width for mobile */
+    }
+
+    .navbar ul li a {
+        font-size: 1rem;
+    }
+
+    .teaser-grid, .episodes-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .long-teaser {
+        grid-column: span 1;
+    }
+
+    .character-selection {
+        flex-direction: column;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    .character-slot {
+        width: 220px; /* Adjusted for mobile */
+        height: 300px;
+    }
+
+    .character-name {
+        font-size: 1.2rem;
+    }
+
+    .roadmap-timeline::before {
+        left: 20px;
+    }
+
+    .roadmap-item {
+        max-width: 100%;
+    }
+
+    .roadmap-item:nth-child(odd) .roadmap-content,
+    .roadmap-item:nth-child(even) .roadmap-content {
+        margin: 0 20px;
+        text-align: left;
+    }
+
+    .tokenomics-content p {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: 2.5rem;
+    }
+
+    .hero-subtitle {
+        font-size: 0.9rem;
+    }
+
+    .cta-button {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.9rem;
+    }
+
+    .section-title {
+        font-size: 1.8rem;
+    }
+
+    .section-title::after {
+        width: 60px;
+    }
+
+    .character-slot {
+        width: 200px;
+        height: 280px;
+    }
+
+    .character-name {
+        font-size: 1rem;
+    }
+}
