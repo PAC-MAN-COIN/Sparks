@@ -21,33 +21,12 @@
     <!-- Header Section with Hero Animation and Speech Bubbles -->
     <header class="hero">
         <div class="hero-content">
-            <h1 class="hero-title">SPARKS</h1>
-            <div class="speech-bubble-container">
-                <div class="speech-bubble">
-                    <p>« First Comic for mature audience on Solana »</p>
-                </div>
-                <div class="speech-bubble">
-                    <p>Explore the Sparks Universe Now!</p>
-                </div>
-            </div>
-            <a href="#teasers" class="cta-button">Explore the Universe</a>
+            <img src="banner_text.png" alt="Banner Text" class="hero-text">
         </div>
         <div class="hero-background">
-            <img src="Banner.jpg" alt="Hero Background" class="hero-image">
+            <img src="Banner3.png" alt="Hero Background" class="hero-image">
         </div>
     </header>
-
-    <!-- Navigation Bar -->
-    <nav class="navbar">
-        <ul>
-            <li><a href="#teasers">Teasers</a></li>
-            <li><a href="#characters">Characters</a></li>
-            <li><a href="#tokenomics">Tokenomics</a></li>
-            <li><a href="#roadmap">Roadmap</a></li>
-            <li><a href="#episodes">Episodes</a></li>
-            <li><a href="#community">Community</a></li>
-        </ul>
-    </nav>
 
     <!-- Teasers Section -->
     <section id="teasers" class="teasers-section">
@@ -147,25 +126,25 @@
     <section id="roadmap" class="roadmap-section">
         <h2 class="section-title">Roadmap</h2>
         <div class="roadmap-timeline">
-            <div class="roadmap-item">
+            <div class="roadmap-item" data-phase="Q1 2025">
                 <div class="roadmap-content">
                     <h3>Q1 2025</h3>
                     <p>Launch of Sparks comic series and $SPARK token.</p>
                 </div>
             </div>
-            <div class="roadmap-item">
+            <div class="roadmap-item" data-phase="Q2 2025">
                 <div class="roadmap-content">
                     <h3>Q2 2025</h3>
                     <p>Release of Episodes 1-3 and community events.</p>
                 </div>
             </div>
-            <div class="roadmap-item">
+            <div class="roadmap-item" data-phase="Q3 2025">
                 <div class="roadmap-content">
                     <h3>Q3 2025</h3>
                     <p>Partnerships and NFT drops.</p>
                 </div>
             </div>
-            <div class="roadmap-item">
+            <div class="roadmap-item" data-phase="Q4 2025">
                 <div class="roadmap-content">
                     <h3>Q4 2025</h3>
                     <p>Expanded universe and global adoption.</p>
@@ -228,7 +207,7 @@
             cursorGlow.style.top = `${y}px`;
         });
 
-        // Comic Sound Effect on Click
+        // Comic Sound Effect on Any Click
         const comicEffect = document.querySelector('.comic-effect');
         function createComicEffect(x, y) {
             const effect = document.createElement('div');
@@ -240,19 +219,16 @@
             comicEffect.appendChild(effect);
             setTimeout(() => {
                 effect.remove();
-            }, 1000); // Remove after animation
+            }, 1000);
         }
 
-        // Add comic effect on click for navbar links, teaser cards, and episode panels
-        document.querySelectorAll('.navbar ul li a, .teaser-card, .episode-panel').forEach(element => {
-            element.addEventListener('click', (e) => {
-                const x = e.clientX;
-                const y = e.clientY;
-                createComicEffect(x, y);
-            });
+        document.addEventListener('click', (e) => {
+            const x = e.clientX;
+            const y = e.clientY;
+            createComicEffect(x, y);
         });
 
-        // Smooth scrolling for navbar links
+        // Smooth scrolling for links (if any remain)
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
