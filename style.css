@@ -182,18 +182,14 @@ h1, h2, h3, .contract-address {
     left: 0;
     width: 100%;
     height: 100%;
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
+    background: url('Banner3.png') no-repeat center center fixed; /* Use background image for parallax */
     background-size: cover;
+    opacity: 0.7; /* Match the opacity previously applied to .hero-image */
 }
 
+/* Remove the hero-image since we're using background image for parallax */
 .hero-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Ensure the image covers the entire area */
-    opacity: 0.7;
-    will-change: transform; /* Optimize for transform animations (parallax) */
+    display: none; /* No longer needed */
 }
 
 /* Speech Bubbles */
@@ -493,6 +489,7 @@ h1, h2, h3, .contract-address {
 .tokenomics-boxes {
     display: flex;
     justify-content: center;
+
     gap: 1rem;
     flex-wrap: wrap;
 }
@@ -963,17 +960,12 @@ h1, h2, h3, .contract-address {
         max-height: 80vh;
         object-fit: contain;
     }
-
-    /* Ensure parallax effect works on desktop */
-    .hero-background {
-        background-attachment: fixed; /* Ensure background-attachment is fixed for parallax */
-    }
 }
 
 /* Mobile: Ensure the hero section covers the entire screen but scrolls naturally */
 @media (max-width: 768px) {
     .hero {
-        position: relative; /* Remove fixed positioning to allow scrolling */
+        position: relative; /* Ensure it scrolls naturally */
         width: 100vw;
         height: 100vh; /* Full viewport height */
     }
@@ -981,13 +973,7 @@ h1, h2, h3, .contract-address {
     .hero-background {
         width: 100%;
         height: 100%;
-        background-attachment: scroll; /* Disable parallax on mobile */
-    }
-
-    .hero-image {
-        width: 100%;
-        height: 100%;
-        object-fit: cover; /* Ensure the image covers the entire area */
+        background-attachment: fixed; /* Enable parallax on mobile */
     }
 
     .hero-text {
@@ -1141,7 +1127,7 @@ h1, h2, h3, .contract-address {
 
 @media (max-width: 480px) {
     .hero {
-        position: relative; /* Remove fixed positioning to allow scrolling */
+        position: relative; /* Ensure it scrolls naturally */
         width: 100vw;
         height: 100vh; /* Full viewport height */
     }
@@ -1149,13 +1135,7 @@ h1, h2, h3, .contract-address {
     .hero-background {
         width: 100%;
         height: 100%;
-        background-attachment: scroll; /* Disable parallax on mobile */
-    }
-
-    .hero-image {
-        width: 100%;
-        height: 100%;
-        object-fit: cover; /* Ensure the image covers the entire area */
+        background-attachment: fixed; /* Enable parallax on mobile */
     }
 
     .hero-text {

@@ -248,19 +248,6 @@
             });
         });
 
-        // Parallax effect for hero background (disabled on mobile for performance)
-        const heroImage = document.querySelector('.hero-image');
-        const heroBackground = document.querySelector('.hero-background');
-        
-        // Ensure the hero image is loaded before applying parallax
-        if (heroImage && window.innerWidth > 768) {
-            window.addEventListener('scroll', function() {
-                const scrollPosition = window.pageYOffset;
-                // Apply parallax effect by translating the hero image
-                heroImage.style.transform = `translateY(${scrollPosition * 0.5}px)`;
-            });
-        }
-
         // Fade-in and slide animations for sections and nested elements on scroll
         const sections = document.querySelectorAll('section');
         const roadmapItems = document.querySelectorAll('.roadmap-item');
