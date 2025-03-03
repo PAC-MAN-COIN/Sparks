@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="style.css">
     <!-- Adding comic-style fonts from Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Chewy&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="Logo.jpg" />
 </head>
 <body>
     <!-- Cursor Glow Overlay -->
@@ -155,38 +156,16 @@
 
     <!-- Teasers Section -->
     <section id="teasers" class="teasers-section">
-        <h2 class="section-title">Teasers</h2>
-        <div class="teaser-carousel">
-            <div class="carousel-arrows">
-                <button class="carousel-arrow teaser-left-arrow" aria-label="Previous Teaser">❮</button>
-                <button class="carousel-arrow teaser-right-arrow" aria-label="Next Teaser">❯</button>
-            </div>
-            <div class="teaser-stack">
-                <div class="teaser-card long-teaser">
-                    <h3>The Long Teaser</h3>
-                    <img src="Teaser2.jpg" alt="Long Teaser" class="teaser-video">
-                </div>
-                <div class="teaser-card short-teaser">
-                    <h3>Character 1 Teaser</h3>
-                    <img src="Teaser1.jpg" alt="Character 1 Teaser" class="teaser-video">
-                </div>
-                <div class="teaser-card short-teaser">
-                    <h3>Character 2 Teaser</h3>
-                    <img src="Teaser3.jpg" alt="Character 2 Teaser" class="teaser-video">
-                </div>
-                <div class="teaser-card short-teaser">
-                    <h3>Character 3 Teaser</h3>
-                    <img src="Teaser4.jpg" alt="Character 3 Teaser" class="teaser-video">
-                </div>
-                <div class="teaser-card short-teaser">
-                    <h3>Character 4 Teaser</h3>
-                    <img src="Teaser5.jpg" alt="Character 4 Teaser" class="teaser-video">
-                </div>
-                <div class="teaser-card short-teaser">
-                    <h3>Tokenomics Teaser</h3>
-                    <img src="Teaser6.jpg" alt="Tokenomics Teaser" class="teaser-video">
-                </div>
-            </div>
+        <h2 class="section-title">Teaser</h2>
+        <div class="teaser-video-container">
+            <iframe 
+                class="teaser-video-iframe"
+                src="https://www.youtube.com/embed/HbC3COF33k0" 
+                title="Sparks Teaser Video"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen
+            ></iframe>
         </div>
     </section>
 
@@ -251,10 +230,10 @@
         // Fade-in and slide animations for sections and nested elements on scroll
         const sections = document.querySelectorAll('section');
         const roadmapItems = document.querySelectorAll('.roadmap-item');
-        const tokenomicsBoxes = document.querySelectorAll('.tokenomics-box');
         const contractAddress = document.querySelector('.contract-address');
         const episodePanels = document.querySelectorAll('.episode-panel');
-        const teaserCards = document.querySelectorAll('.teaser-card');
+        const teaserVideoContainer = document.querySelector('.teaser-video-container');
+        const tokenomicsBoxes = document.querySelectorAll('.tokenomics-box');
 
         const options = {
             threshold: 0.2
@@ -279,16 +258,17 @@
         if (contractAddress) {
             observer.observe(contractAddress);
         }
-        tokenomicsBoxes.forEach(box => {
-            observer.observe(box);
-        });
 
         episodePanels.forEach(panel => {
             observer.observe(panel);
         });
 
-        teaserCards.forEach(card => {
-            observer.observe(card);
+        if (teaserVideoContainer) {
+            observer.observe(teaserVideoContainer);
+        }
+
+        tokenomicsBoxes.forEach(box => {
+            observer.observe(box);
         });
 
         // Character selection animation
@@ -320,39 +300,6 @@
                 }, 1000);
             });
         });
-
-        // Carousel for Teasers
-        const teaserStack = document.querySelector('.teaser-stack');
-        const teaserCardsArray = document.querySelectorAll('.teaser-card');
-        const teaserLeftArrow = document.querySelector('.teaser-left-arrow');
-        const teaserRightArrow = document.querySelector('.teaser-right-arrow');
-        let teaserIndex = 0;
-
-        function updateTeaserCarousel() {
-            teaserCardsArray.forEach((card, index) => {
-                card.style.display = index === teaserIndex ? 'block' : 'none';
-                card.classList.toggle('active', index === teaserIndex);
-            });
-
-            teaserLeftArrow.style.display = teaserIndex === 0 ? 'none' : 'inline-block';
-            teaserRightArrow.style.display = teaserIndex === teaserCardsArray.length - 1 ? 'none' : 'inline-block';
-        }
-
-        teaserLeftArrow.addEventListener('click', () => {
-            if (teaserIndex > 0) {
-                teaserIndex--;
-                updateTeaserCarousel();
-            }
-        });
-
-        teaserRightArrow.addEventListener('click', () => {
-            if (teaserIndex < teaserCardsArray.length - 1) {
-                teaserIndex++;
-                updateTeaserCarousel();
-            }
-        });
-
-        updateTeaserCarousel();
 
         // Data for Episodes (including placeholders)
         const episodesData = [
